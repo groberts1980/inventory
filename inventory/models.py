@@ -9,10 +9,12 @@ class Category(models.Model):
 
 class Item(models.Model):
     item_id  = AutoField(primary_key=True)
-    name     = CharField(max_length=50)
+    name     = CharField(max_length=50, null=False)
+    serial   = CharField(max_length=15, null=False)
+    caliber  = CharField(max_length=8, null=True)
+    quantity = IntegerField(default=0, null=True)
+
     category = ForeignKey(Category, on_delete=models.CASCADE)
-    caliber  = CharField(max_length=8)
-    quantity = IntegerField(default=0)
 
     def __str__(self):
         return self.name
