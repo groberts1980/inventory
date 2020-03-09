@@ -1,11 +1,13 @@
-import models
+from django import forms
+from inventory.models import *
+from inventory.forms import *
 
-class Category(models.Model):
-    category = CharField(max_length=50)
+class Category(forms.ModelForm):
+    category = forms.CharField(max_length=50)
 
-class Item(forms.Modelform):
-    name     = CharField(required=True, max_length=50)
-    category = CharField(required=True, max_length=50)
-    serial   = CharField(required=True, max_length=15)
-    caliber  = CharField(required=True, max_length=8)
-    quantity = IntegerField(required=False, default=0)
+class Item(forms.ModelForm):
+    name     = forms.CharField(required=True, max_length=50, label="Name: ")
+    category = forms.CharField(required=True, max_length=50, label="Category: ")
+    serial   = forms.CharField(required=True, max_length=15, label="Serial Number: ")
+    caliber  = forms.CharField(required=True, max_length=8,  label="Caliber: ")
+    quantity = forms.IntegerField(required=False, label="Quantity: ")
